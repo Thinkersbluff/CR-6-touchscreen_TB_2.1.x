@@ -1,43 +1,42 @@
-# Re-Factored CR-6 Touchscreen firmware
+# CR-6 Touchscreen firmware for Marlin 2.1.x
 
-## Do You Need This Re-Factored Version?
+## Do You Need This Firmware?
 
 *If you have [a BTT SKR board with the BTT TFT](https://damsteen.nl/blog/2020/11/25/how-to-btt-skr-cr6-installation) you do not need this firmware.*
 
-**Everyone else** needs this version of the CR6Community display firmware, to use their stock TFT display with version 6.1 or 6.2 of the CR6 Community motherboard firmware.
-
-## What Problem Does This Solve?
-
-The original June 2021 CF6.1 DWIN_SET ONLY ran on displays using DGUS2 v3.5.  As of approximately December 2021, Creality started shipping displays flashed and calibrated with DGUS2 v4.5.  DGUS2 v4.5 and higher require a different touchscreen calibration than prior DGUS2 versions.  CF6.1 users who flashed those new displays with the original CF6.1 display firmware started having one of two serious problems:   
-  1. If they flashed the Kernel Upgrade files to their displays, then the push buttons on the main menu did not respond to touch (because the touchscreen was not calibrated for DGUS2 v3.5)  
-  2. If they did NOT flash the Kernel Upgrade files (What? Not everybody follows the Readme instructions?!?), their screens came up blank, because the June 2021 version of CF6.1 DWIN_SET ONLY ran on DGUS2 v3.5.
-
-That issue left some new CF6.1 users "snookered" and often led to other issues as they tried to revert to stock and could not make that work either (if they had flashed the kernel upgrade files.)
-As of 17 Dec 2024, we have removed the original display firmware zipfile from the release 6.1 motherboard firmware download and replaced that zipfile with a link to this firmware.
-
-**NOTE: If your display is already showing the above symptoms, this YouTube video may help you get it back to an operational state: https://youtu.be/0xwFGiyg4Z8?si=GmPNhAfzx-sv9RV0**
+**Everyone else** needs this version of the CR6Community display firmware, to use their stock Creality CR6 TFT display with version 2.1.x of the Marlin 2.1.x software.
 
 
-## How Re-Factoring Helps
+## What Problem(s) Does This Firmware Solve?
 
-This Re-Factored version of DWIN_SET was recreated from the June2021 release of the CF6.1 Touchscreen Firmware, in a different version of the DGUSTools.
-It runs on ALL versions of DGUS2, regardless of the touchscreen calibration, AS LONG AS YOU DO NOT FLASH DGUS2 KERNEL FILES TO THE DISPLAY THAT ARE INCOMPATIBLE WITH THE TOUCHSCREEN CALIBRATION. (See the README in the folder containing the DGUS2 Kernel files.)  
+The firmware released on this site largely delivers the User Interface (UI) and the User eXperience (UX) for the CR6 printer owner/operators' interactions with the Marlin 2.1.x backend.
 
-**NOTE: Text kerning does NOT work correctly on DGUS2 v1.x, so although this DWIN_SET can be used on Kickstarter CR6 machines still running DGUS2 v1.4, some data will not fit neatly into their display fields, unless you upgrade the DGUS2 with the DGUS2 v3.5 kernel upgrade file provided.**
+Version 6.1 of the CR6 Community Firmware (CF6.1) - first released in June 2021 - is a fork of Marlin 2.0.8.1.
+The primary goal of the CR6 Community project - as stated in their repository summary - was, "cleaning-up the source code changes for the CR-6 so it can be merged upstream."
+The devs on that project also set themselves the ambitious secondary goal, "We also want to extend the functionality to make it fully functional"
 
-## How Do I Find Out What DGUS2 kernel is Running on my Display?
+The CR6 Community devs' efforts to achieve those two goals concurrently resulted in a set of custom-designed "handler" modules, along with CR6-unique UI/UX features packed into the companion CF6.1 DWIN_SET firmware, exploiting the Marlin/lcd/extui interface, as it existed in Marlin 2.0.8.1.
 
-To find out which version of DGUS2 is running on your display, "flash" your display with a micro SD card that contains ONLY an EMPTY folder named DWIN_SET. The top line on the blue flash screen will display the DGUS2 version currently installed.
+The devs stabilized CF6.1, then raised PR#19588 with upstream Marlin, asking that the resulting CR6 UI and extui integration be merged back into the Marlin core distribution.
+
+Unfortunately, PR#19588 did not result in re-integration of the CR6 Community Firmware, in 2021, and the architecture and functionality of Marlin did not remain "static" in the five years after that.
+
+Marlin evolved from 2.0.8.x to 2.0.9.x to 2.1.x.
+
+The extui integration API evolved at each new version.
+
+In some cases, the custom handlers of the CR6 Community 6.1 release now rely on features and functions that no longer exist at Marlin 2.1.x and do not comply with the new extui API.  Undertandably, the CF6.1 UI also does not support features that are new since 2.0.8.1, so the secondary goal of the CF project would require additional work, now, to catch-up with the latest features.
+
+In the fall of 2026, Thinkyhead and the Marlin 2.1.x design team have updated and re-engaged in PR#19588.
+They have the extui/dgus/creality handlers, to align with the new extui API and to be compatible with the existing CF6.1 DWIN_SET baseline.
+
+Now, they have invited CR6 printer owners to download and hardware-test that software, and to provide them with feedback as to whether it "works" on their printers.
+
 
 ## Downloads
 
-The Source and DWIN_SET zip files are posted as Assets in the Releases section of this repository.
-
-* The Zip file with DWIN_SET in the name contains the DWIN_SET folder, README and support files for the current release. 
-  Download that file from the latest Release's Assets list.
-
-* Zip files with "Source" in their name are the DGUS project and source files for this project.
-  You do not need those files, unless you intend to try to fork and modify this version of the UI.
+All CR6 printers using the stock TFT display will need to flash the exact same DWIN_SET to their display.
+That firmware is available from the Source.zip file attached to the Latest Release on this site.
 
 ## Installing This Firmware to your Touchscreen
 ___________________________________________________________________________________________
@@ -45,17 +44,16 @@ ________________________________________________________________________________
 PLEASE FIRST READ [THIS FAQ:](https://github.com/CR6Community/Marlin/wiki/Troubleshooting-Problems-with-Firmware-Flashing#my-screen-looks-like-this-picture-after-flashing-it)**
 __________________________________________________________________________________________
 
-  1. Download the DWIN_SET .zip file from the latest Release's Assets list
-  2. Extract all contents from that .zip file into a new blank directory
+  1. Download the Source.zip file from the latest Release's Assets list
+  2. Extract the DWIN_SET folder and contents from that .zip file into a new blank directory
   3. Find and read ALL of the README files BEFORE attempting to flash your display (You'll be glad you did!)
   4. Figure-out which DGUS 2 is presently running on your display (it may help you later, to know what you started with)
   5. DO NOT FLASH ANY KERNEL FILES TO YOUR DISPLAY, unless:  
     5.1 You have inadvertently "bricked" your display by flashing the DGUS2 kernel upgrade files to a display calibrated for DGUS2 v4.5+  
     5.2 Your display is running version 1.x of DGUS2, and you want to fix the text kerning (in which case, add the DGUS2 v3.5 kernel file to your DWIN_SET.)
-  6. Verify that you have satisfied all of the Pre-Requisites for flashing this firmware (Which you will know after reading the README files...)
-  7. Flash your display with the DWIN_SET folder 
-  8. If anything went wrong, try the TROUBLESHOOTING.MD instructions
-  9. Please provide feedback in Comments or Issues, as applicable
+  6. Flash your display with the DWIN_SET folder 
+  7. If anything went wrong, try the TROUBLESHOOTING.MD instructions
+  8. Please provide feedback in Comments or Issues, as applicable
 
 ## Contributing
 
