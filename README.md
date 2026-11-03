@@ -23,7 +23,7 @@ That firmware is available from the Source.zip file attached to the Latest Relea
 ## Installing This Firmware to your Touchscreen
 ___________________________________________________________________________________________
 **CAUTION: If you are using a MAC to prepare the SD card and to copy DWIN_SET to the card, 
-PLEASE FIRST READ [THIS FAQ:](https://github.com/CR6Community/Marlin/wiki/Troubleshooting-Problems-with-Firmware-Flashing#my-screen-looks-like-this-picture-after-flashing-it)**
+PLEASE FIRST READ [THIS FAQ](https://github.com/CR6Community/Marlin/wiki/Troubleshooting-Problems-with-Firmware-Flashing#my-screen-looks-like-this-picture-after-flashing-it)**  NOTE: It is actually the .cfg file that gets corrupted on the MAC, so you can follow the FAQ instructions to flash the CF6.1 Baseline DWIN_SET to your card and then overwrite any superceded files, from any later DWIN_SET release posted here.
 __________________________________________________________________________________________
 
   1. Download the Source.zip file from the latest Release's Assets list
