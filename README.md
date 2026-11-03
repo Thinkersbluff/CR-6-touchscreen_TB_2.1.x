@@ -4,7 +4,7 @@
 
 *If you have [a BTT SKR board with the BTT TFT](https://damsteen.nl/blog/2020/11/25/how-to-btt-skr-cr6-installation) you do not need this firmware.*
 
-**Everyone else** needs this version of the CR6Community display firmware, to use their stock Creality CR6 TFT display with the Marlin 2.1.x software developed under Pull Request (PR)#19588.
+**Everyone else** needs this version of the CR6Community display firmware, to use their stock Creality CR6 TFT display with the Marlin 2.1.x software developed under Marlin Pull Request (PR)#19588.
 
 
 ## What Problem(s) Does This Firmware Solve?
