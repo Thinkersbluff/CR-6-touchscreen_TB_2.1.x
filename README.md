@@ -4,34 +4,16 @@
 
 *If you have [a BTT SKR board with the BTT TFT](https://damsteen.nl/blog/2020/11/25/how-to-btt-skr-cr6-installation) you do not need this firmware.*
 
-**Everyone else** needs this version of the CR6Community display firmware, to use their stock Creality CR6 TFT display with version 2.1.x of the Marlin 2.1.x software.
+**Everyone else** needs this version of the CR6Community display firmware, to use their stock Creality CR6 TFT display with the Marlin 2.1.x software developed under Pull Request (PR)#19588.
 
 
 ## What Problem(s) Does This Firmware Solve?
 
-The firmware released on this site largely delivers the User Interface (UI) and the User eXperience (UX) for the CR6 printer owner/operators' interactions with the Marlin 2.1.x backend.
+In 2021, the CR6 community submitted PR#19588 to merge the cleaned-up CF6.1 UI and extended functionality upstream. The pull request stalled as Marlin evolved from 2.0.8.x to 2.1.x, a major update that fundamentally rewrote the extui API. Consequently, the original CF6.1 handlers and UI fell out of sync and were excluded from the Marlin 2.1.x branch.
 
-Version 6.1 of the CR6 Community Firmware (CF6.1) - first released in June 2021 - is a fork of Marlin 2.0.8.1.
-The primary goal of the CR6 Community project - as stated in their repository summary - was, "cleaning-up the source code changes for the CR-6 so it can be merged upstream."
-The devs on that project also set themselves the ambitious secondary goal, "We also want to extend the functionality to make it fully functional"
+In fall 2026, the Marlin core team (led by Thinkyhead) revived PR#19588. They have rewritten the extui, dgus, and Creality handlers to comply with the current API while preserving the established CF6.1 DWIN_SET interface. The team is now asking CR6 owners to flash the build, run hardware tests, and report on stability and feature parity.
 
-The CR6 Community devs' efforts to achieve those two goals concurrently resulted in a set of custom-designed "handler" modules, along with CR6-unique UI/UX features packed into the companion CF6.1 DWIN_SET firmware, exploiting the Marlin/lcd/extui interface, as it existed in Marlin 2.0.8.1.
-
-The devs stabilized CF6.1, then raised PR#19588 with upstream Marlin, asking that the resulting CR6 UI and extui integration be merged back into the Marlin core distribution.
-
-Unfortunately, PR#19588 did not result in re-integration of the CR6 Community Firmware, in 2021, and the architecture and functionality of Marlin did not remain "static" in the five years after that.
-
-Marlin evolved from 2.0.8.x to 2.0.9.x to 2.1.x.
-
-The extui integration API evolved at each new version.
-
-In some cases, the custom handlers of the CR6 Community 6.1 release now rely on features and functions that no longer exist at Marlin 2.1.x and do not comply with the new extui API.  Undertandably, the CF6.1 UI also does not support features that are new since 2.0.8.1, so the secondary goal of the CF project would require additional work, now, to catch-up with the latest features.
-
-In the fall of 2026, Thinkyhead and the Marlin 2.1.x design team have updated and re-engaged in PR#19588.
-They have the extui/dgus/creality handlers, to align with the new extui API and to be compatible with the existing CF6.1 DWIN_SET baseline.
-
-Now, they have invited CR6 printer owners to download and hardware-test that software, and to provide them with feedback as to whether it "works" on their printers.
-
+This repository hosts the curated DWIN_SET firmware to facilitate those tests. If validation confirms Marlin 2.1.x fully supports the CF6.1 baseline, this release will simply mirror the official firmware on the CR6 Community GitHub. If testing surfaces issues requiring DWIN_SET adjustments, those fixes will be developed, discussed, and published here.
 
 ## Downloads
 
